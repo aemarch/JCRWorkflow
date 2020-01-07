@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- ====================================================================== -->
+    <!-- P A R E N T P R O J E C T D E S C R I P T I O N -->
+    <!-- ====================================================================== -->
+    <parent>
+        <groupId>jcrsubmit</groupId>
+        <artifactId>jcrsubmit</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- ====================================================================== -->
+    <!-- P R O J E C T D E S C R I P T I O N -->
+    <!-- ====================================================================== -->
+
+    <artifactId>jcrsubmit-bundle</artifactId>
+    <packaging>bundle</packaging>
+    <name>jcrsubmit Bundle</name>
+    <dependencies>
+    <dependency>
+    <groupId>com.adobe.granite</groupId>
+    <artifactId>com.adobe.granite.workflow.api</artifactId>
+       <version>1.0.0</version>
+    <scope>provided</scope>
+    </dependency>
+    <dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+        <version>2.6</version>
+    <scope>provided</scope>
+    </dependency>
+    <dependency>
+    <groupId>com.day.commons</groupId>
+    <artifactId>day.commons.datasource.poolservice</artifactId>
+        <version>1.0.10</version>
+</dependency>
+          <dependency>
+            <groupId>biz.aQute.bnd</groupId>
+            <artifactId>bndlib</artifactId>
+                 <version>2.4.0</version>
+     <scope>provided</scope>
+        </dependency>
+             <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.jcr</groupId>
+            <artifactId>jcr</artifactId>
+                    </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.jcr.api</artifactId>
+        </dependency>
+        <dependency>
+				<groupId>org.apache.sling</groupId>
+				<artifactId>org.apache.sling.commons.osgi</artifactId>
+					<version>2.4.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.day.cq.wcm</groupId>
+		  <artifactId>cq-wcm-api</artifactId>
+		  <version>5.5.0</version>
+		</dependency>
+		<dependency>
+  <groupId>com.day.cq</groupId>
+  <artifactId>cq-commons</artifactId>
+  <version>5.5.0</version>
+</dependency>
+
+<dependency>
+  <groupId>com.day.cq.workflow</groupId>
+  <artifactId>cq-workflow-api</artifactId>
+  <version>5.4.2</version>
+</dependency>		
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+        </dependency>
+                  
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.scr.annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+              
+            <dependency> 
+            <groupId>com.adobe.granite</groupId> 
+            <artifactId>com.adobe.granite.fragment.xml</artifactId>
+            <version>0.1.0</version> 
+            <scope>provided</scope> 
+        </dependency>
+          
+        <dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>javax.mail-api</artifactId>
+    <version>1.5.2</version>
+</dependency>
+          <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.8.6</version>
+</dependency>
+<dependency>
+    <groupId>com.adobe.aem</groupId>
+    <artifactId>uber-jar</artifactId>
+    <version>6.4.0</version>
+    <classifier>apis</classifier>
+    <scope>provided</scope>
+</dependency>
+                
+  <dependency>
+       <groupId>org.apache.geronimo.specs</groupId>
+       <artifactId>geronimo-atinject_1.0_spec</artifactId>
+       <version>1.0</version>
+       <scope>provided</scope>
+   </dependency>
+         
+    </dependencies>
+ 
+    <!-- ====================================================================== -->
+    <!-- B U I L D D E F I N I T I O N -->
+    <!-- ====================================================================== -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-scr-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-scr-descriptor</id>
+                        <goals>
+                            <goal>scr</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>com.jcrworkflow.impl-bundle</Bundle-SymbolicName>
+                    </instructions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>maven-sling-plugin</artifactId>
+                <configuration>
+                    <slingUrl>http://${crx.host}:${crx.port}/apps/myproject/install</slingUrl>
+                    <usePut>true</usePut>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                 <configuration>
+                    <excludePackageNames>
+                        *.impl
+                    </excludePackageNames>
+                 </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
